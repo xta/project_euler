@@ -9,6 +9,6 @@ threes = (3..max).step(3).to_a
 fives = (5...max).step(5).to_a
 
 numbers = (threes + fives).uniq
-sum = numbers.reduce 0, :+
+sum = numbers.inject(:+)
 
 sum #=> 233168
