@@ -8,7 +8,7 @@ package main
 
 import (
 	"fmt"
-	"math/big"
+	"prime"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 			break
 		}
 
-		if checkPrime(int64(i)) {
+		if prime.Check(int64(i)) {
 			primes = append(primes, i)
 		}
 
@@ -32,10 +32,4 @@ func main() {
 	largestPrime := primes[len(primes)-1]
 
 	fmt.Println(largestPrime) // 104743
-}
-
-func checkPrime(x int64) (result bool) {
-	difficulty := 64 // 64 is arbitrary. a bigger value results in more accuracy but takes longer
-	i := big.NewInt(x)
-	return i.ProbablyPrime(difficulty)
 }

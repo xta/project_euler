@@ -9,7 +9,7 @@ package main
 import (
 	"fmt"
 	"math"
-	"math/big"
+	"prime"
 )
 
 func main() {
@@ -26,7 +26,7 @@ func main() {
 
 	for i := 0; i < len(factors); i++ {
 		checkNum := int64(factors[i])
-		if checkPrime(checkNum) {
+		if prime.Check(checkNum) {
 			primes = append(primes, checkNum)
 		}
 	}
@@ -34,12 +34,6 @@ func main() {
 	max := sliceMax(primes)
 
 	fmt.Println(max) // 6857
-}
-
-func checkPrime(x int64) (result bool) {
-	difficulty := 64 // 64 is arbitrary. a bigger value results in more accuracy but takes longer
-	i := big.NewInt(x)
-	return i.ProbablyPrime(difficulty)
 }
 
 func sliceMax(slice []int64) (max int64) {
