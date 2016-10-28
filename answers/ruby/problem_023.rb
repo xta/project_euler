@@ -50,13 +50,17 @@ def is_sum_of_two_abundant_numbers? integer_to_check
     false
 end
 
-total = (1..LIMIT).inject(0) do |sum, integer|
-    p "Checking #{integer}/#{LIMIT}..."
-    if !is_sum_of_two_abundant_numbers?(integer)
-        sum += integer
-    else
-        sum
+abundant_sums = []
+
+ ABUNDANTS.each do |x|
+    ABUNDANTS.each do |y|
+        sum = x + y
+        next if sum > LIMIT
+        abundant_sums << sum
     end
 end
 
-puts total #=> 4179871
+sums = abundant_sums.uniq
+not_abundant_sums = (1..LIMIT).to_a - sums
+
+puts not_abundant_sums.inject(:+) #=> 4_179_871
